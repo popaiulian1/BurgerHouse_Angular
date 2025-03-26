@@ -2,7 +2,11 @@ body{
     background-color: #f4c27f;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 header{
@@ -21,32 +25,23 @@ img{
 }
 
 h2{
-    font-size: 24px;
+    font-size: 65px;
     font-weight: bold;
     color: rgb(245, 78, 78);
 }
 
 h3{
-    font-size: 35px;
+    font-size: 55px;
     font-weight: bold;
     color: rgb(245, 78, 78);
 }
 
-.featured{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 50px 0;
+p{
+    font-size: 28px;
+    font-weight: normal;
+    color: black;
 }
 
-.featured-burgers{
-    width: 50%;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
 .logo{
     width: 200px;
@@ -73,6 +68,44 @@ nav a{
     padding: 50px 0;
 }
 
+.featured{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.featured-burgers{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.burger-photo{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold; 
+    text-align: center;
+    overflow: hidden;
+}
+
+.price{
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 30px;
+}
+
 .burger-list{
     display:flex;
     justify-content: center;
@@ -80,15 +113,10 @@ nav a{
 }
 
 .burger-item{
-    background:white;
-    padding:20px;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+    flex-direction: column;
+    align-items: center; 
+    gap: 10px;
 }
 
 .shop-button{
@@ -107,14 +135,17 @@ nav a{
 .about{
     display: flex;
     justify-content: space-around;
-    padding: 50px 0;
+    padding: 20px 0px 20px 20px;
 }
 
 .about-photo{
     background: #e0a96d;
-    width: 250px;
-    height: 300px;
+    width: 500px;
+    height: 600px;
     display: flex;
+    margin: 0px;
+    margin-right: 0px;
+    padding-right: 0px;
     align-items: center;
     justify-content: center;
 }
@@ -123,9 +154,15 @@ nav a{
     width: 50%;
 }
 
+.about-text h3{
+    font-size: 90px;
+    width: 40%;
+    margin-bottom: 0px;
+}
+
 .banner{
     text-align: center;
-    padding: 50px 0;
+    padding: 10px 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     rotate: -10deg;
     font-weight: bold;
@@ -150,14 +187,43 @@ nav a{
     text-align: center;
 }
 
+
+.contact-text{
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 50%;
+    margin-top: 0;
+}
+
+.contact-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-text-container{
+    flex: 1;
+    max-width: 40%;
+    text-align: left;
+    padding-left: 200px;
+}
+
+.contact-text-container h2{
+    margin-bottom: 5px;
+}
+
 form {
+    flex: 1;
+    max-width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 input, textarea{
-    width: 80%;
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border-radius: 50px;
