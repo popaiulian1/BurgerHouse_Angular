@@ -1,0 +1,52 @@
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/burger-house-logo.png" alt="Test Image">
+            <span class="logo-title"> BurgerHouse </span>
+        </div>
+        <nav>
+            <ul>
+                <li><a routerLink = "/shop">Shop</a></li>
+                <li><a routerLink = "/about">About</a></li>
+                <li><a routerLink = "/contact">Contact</a></li>
+                <li><a routerLink = "/cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="banner">
+        <h1>Quality Burgers Since '99</h1>
+    </section>
+    
+    <section class="featured">
+        <h2>Want a taste?</h2>
+        <div class="featured-burgers" *ngFor="let burger of burgers">
+            <div class="burger-photo">{{ burger.name }}</div>
+            <p>{{ burger.name }}</p>
+            <p class="price">{{ burger.price }}</p>
+        </div>
+        <button class="shop-button">Shop all</button>
+    </section>
+    
+    <section class="about">
+        <div class="about-photo">PHOTO</div>
+        <div class="about-text">
+            <h3><i>Get to know us</i></h3>
+            <p>General info about our burgers.....</p>
+            <button class="learn-button">Learn More</button>
+        </div>
+    </section>
+    
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <p>Interested in working together? Fill out your info, and we'll be in touch!</p>
+        <form (submit)="onSubmit()">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button class="shop-button" type="submit">Submit contact form!</button>
+        </form>
+    </section>
+</body>
+
