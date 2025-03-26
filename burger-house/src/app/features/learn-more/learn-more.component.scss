@@ -1,0 +1,24 @@
+html{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #f4c27f;
+}
+
+.learn-more-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    h2{
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}

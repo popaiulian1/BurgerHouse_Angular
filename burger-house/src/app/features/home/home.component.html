@@ -14,22 +14,22 @@
         </nav>
     </header>
     
-    <section class="banner">
+    <div class="banner">
         <h1>Quality Burgers Since '99</h1>
-    </section>
+    </div>
     
-    <section class="featured">
+    <div class="featured">
         <h2>Want a taste?</h2>
         <div class="featured-burgers">
-            <div class="burger-item" *ngFor="let burger of burgers">
+            <div class="burger-item" *ngFor="let burger of featuredBurgers">
                 <div class="burger-photo">{{ burger.name }}</div>
                 <p class="price">{{ burger.price }}</p>
             </div>
         </div>
         <button class="shop-button">Shop all</button>
-    </section>
+    </div>
     
-    <section class="about">
+    <div class="about">
         <div class="about-photo">PHOTO</div>
         <div class="about-text">
             <h3><i>Get to know us</i></h3>
@@ -37,11 +37,11 @@
                 stacking up the freshest ingredients. Born in New Jersey, 
                 made for burger lovers everywhere! Hungry for more? 
                 Click below to dig into our story!</p>
-            <button class="learn-button">Learn More</button>
+            <button class="learn-button" (click)="navigateToLearnMore()">Learn More</button>
         </div>
-    </section>
+    </div>
     
-    <section class="contact">
+    <div class="contact">
         <div class=" contact-container">
             <div class="contact-text-container">
                 <h2>Contact Us</h2>
@@ -54,6 +54,6 @@
                 <button class="shop-button" type="submit">Submit contact form!</button>
             </form>
         </div>
-    </section>
+    </div>
 </body>
 
