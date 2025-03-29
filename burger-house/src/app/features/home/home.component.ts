@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { Burger } from '../../core/burger/burger.interface';
+import { BurgerService } from '../../core/burger/burger.service';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +11,18 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  featuredBurgers: Burger[] = [];
+
+  constructor(private burgerService: BurgerService) {}
+
+  ngOnInit(): void {
+    this.burgerService.getBurgers().subscribe((burgers) => {
+      this.featuredBurgers = burgers.filter((burger) => burger.isNew);
+    });
+  }
 
   private router =  inject(Router);
-
-  featuredBurgers = [
-    {name: 'Cheeseburger', price: '$5.99'},
-    {name: 'Bacon Cheeseburger', price: '$6.99'},
-    {name: 'Double Cheeseburger', price: '$7.99'}
-  ];
 
   contact = {
     firstName: '',

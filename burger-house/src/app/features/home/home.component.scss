@@ -1,22 +1,4 @@
-body{
-    background-color: #f4c27f;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-html{
-    border: 0;
-    margin: 0;
-    padding: 0;
-    background-color: #f4c27f;
-}
+@import '../../../styles/_variables.scss';
 
 header{
     display:flex;
@@ -24,36 +6,35 @@ header{
     padding: 20px;
     height: 200px;
     width: auto;
-    background-color: #f4c27f;
 }
 
 img{
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 250px;
     overflow: visible;
 }
 
 h2{
     font-size: 65px;
     font-weight: bold;
-    color: rgb(245, 78, 78);
+    color: $primary-text-color;
 }
 
 h3{
     font-size: 55px;
     font-weight: bold;
-    color: rgb(245, 78, 78);
+    color: $primary-text-color;
 }
 
 p{
     font-size: 28px;
     font-weight: normal;
-    color: black;
+    color: $secondary-text-color;
 }
 
 
 .logo{
-    width: 200px;
+    width: 400px;
     height: auto;
     display: block;
 }
@@ -67,9 +48,26 @@ nav ul{
 
 nav a{
     text-decoration: none;
-    color: rgb(245, 78, 78);
+    color: $primary-text-color;
     font-size: 28px;
     font-weight: bold;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: $primary-text-color;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
 }
 
 .menu{
@@ -82,37 +80,59 @@ nav a{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 50px 0;
-}
+    gap: 40px;
+    padding: 20px;
 
-.featured-burgers{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-}
+    .featured-burgers{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        gap: 300px;
+        padding: 20px;
 
-.burger-photo{
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-weight: bold; 
-    text-align: center;
-    overflow: hidden;
-}
+        .burger-item{
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            text-align: center;
+            padding: 15px;
+            width: 250px;
 
-.price{
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-    margin-top: 30px;
+            .burger-photo{
+                background-color: #fff;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+                width: 500px;
+                height: 500px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            img{   
+                width: 80%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            h3{
+                font-size: 30px;
+                font-weight: bold;
+                color: $primary-text-color;
+                margin-bottom: 10px 0;
+            }
+
+            .price{
+                font-size: 30px;
+                font-weight: bold;
+                color: $secondary-text-color;
+                margin-bottom: 10px 0;
+            }
+        }
+    }
 }
 
 .burger-list{
@@ -121,53 +141,77 @@ nav a{
     gap: 20px;
 }
 
-.burger-item{
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    gap: 10px;
-}
 
-.shop-button{
+
+.shop-button, .learn-button{
     margin-top: 20px;
-    background-color: black;
+    background-color: $primary-button-color;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    cursor: pointer;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 18px;
     font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: $font-family;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    &:hover{
+        background-color: white;
+        color: $primary-button-color;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: radial-gradient(circle, rgba(255, 255, 255, 0.4) 10%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: scale(0.8);
+        border-radius: 30px;
+    }
+
+    &:hover::after{
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
 .about{
     display: flex;
     justify-content: space-around;
-    padding: 20px 0px 20px 20px;
-}
+    padding: 20px 20px 20px 10px;
 
-.about-photo{
-    background: #e0a96d;
-    width: 500px;
-    height: 600px;
-    display: flex;
-    margin: 0px;
-    margin-right: 0px;
-    padding-right: 0px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 60px;
-}
+    .about-photo{
+        width: 400px;
+        height: 600px;
+        display: flex;
+        margin: 0px;
+        margin-left: 60px;
+        margin-right: 0px;
+        padding-right: 0px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 60px;
+        transform:rotate(20deg);
+    }
 
-.about-text{
-    width: 50%;
-}
-
-.about-text h3{
-    font-size: 90px;
-    width: 40%;
-    margin-bottom: 0px;
+    .about-text{
+        width: 50%;
+        h3{
+            font-size: 90px;
+            width: 40%;
+            margin-bottom: 0px;
+        }
+    }
 }
 
 .banner{
@@ -179,50 +223,36 @@ nav a{
     font-size: 24px;
 }
 
-.learn-button{
-    margin-top: 20px;
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .contact{
     padding: 50px;
     text-align: center;
-}
 
+    .contact-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
 
-.contact-text{
-    font-size: 18px;
-    font-weight: bold;
-    max-width: 50%;
-    margin-top: 0;
-    font-weight: normal;
-}
+        .contact-text-container{
+            flex: 1;
+            max-width: 40%;
+            text-align: left;
+            padding-left: 200px;
 
-.contact-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+            .contact-text-container h2{
+                margin-bottom: 5px;
+            }
 
-.contact-text-container{
-    flex: 1;
-    max-width: 40%;
-    text-align: left;
-    padding-left: 200px;
-}
-
-.contact-text-container h2{
-    margin-bottom: 5px;
+            .contact-text{
+                font-size: 18px;
+                font-weight: bold;
+                max-width: 50%;
+                margin-top: 0;
+                font-weight: normal;
+            }
+        }
+    }
 }
 
 form {
