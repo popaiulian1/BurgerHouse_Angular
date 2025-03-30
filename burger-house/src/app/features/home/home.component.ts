@@ -38,4 +38,12 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     console.log('Contact form submitted:', this.contact);
   }
+
+  navigateToLogin() {
+    this.router.navigateByUrl('/login');
+  }
+
+  navigateToSignup() {
+    this.router.navigateByUrl('/signup');
+  }
 }

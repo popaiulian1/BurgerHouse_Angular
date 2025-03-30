@@ -10,6 +10,4 @@ export interface Burger{
     isSpicy: boolean;
     isPopular: boolean;
     isNew: boolean;
-    createdAt: Date;
-    updatedAt: Date;
 }

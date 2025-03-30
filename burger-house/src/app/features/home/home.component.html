@@ -1,24 +1,35 @@
 <header>
     <nav class="header-nav">
         <ul class="nav-links">
+            <li>
+                <div class="cart">
+                    <a href="/cart">
+                        <img src="assets/images/cart-icon.png" alt="Cart Icon" class="cart-icon" />
+                        <!--to get burger cart--->
+                    </a>
+                </div>
+            </li>
             <li><a href="/shop">Menu</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>   
         <div class="logo">
             <img src="assets/images/logo/burger-house-logo-text.png" 
             alt="Burger House Logo" class="logo-image" />
         </div>
-        <div class="cart">
-            <a href="/cart">
-                <!--to get burger cart--->
-            </a>
+
+        <div class="login-signup-container">
+            <button class="login-button" (click)="navigateToLogin()">Login</button>
+            <button class="signup-button" (click)="navigateToSignup()">Sign Up</button>
         </div>
     </nav>
 </header>
 
+<!--
 <div class="banner">
     <h1>Quality Burgers Since '99</h1>
 </div>
+-->
 
 <div class="featured">
     <h2>Want a taste?</h2>
