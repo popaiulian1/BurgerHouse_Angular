@@ -41,20 +41,22 @@
             <h3>{{burger.name}}</h3>
         </div>
     </div>
-    <button class="shop-button">Shop all</button>
+    <button class="shop-button" (click)="navigateToShop()">Shop all</button>
 </div>
 
-<div class="about">
-    <img src="assets/images/floating-burger.png" class="about-photo" alt="Floating Burger">
-    <div class="about-text">
+<div class="about-container">
+    <div class="about">
+      <img src="assets/images/floating-burger.png" class="about-photo" alt="Floating Burger">
+      <div class="about-text">
         <h3><i>Get to know us</i></h3>
         <p>Since '99, BurgerHouse has been flipping juicy patties and 
             stacking up the freshest ingredients. Born in New Jersey, 
             made for burger lovers everywhere! Hungry for more? 
             Click below to dig into our story!</p>
         <button class="learn-button" (click)="navigateToLearnMore()">Learn More</button>
+      </div>
     </div>
-</div>
+  </div>
 
 <div class="contact">
     <div class=" contact-container">

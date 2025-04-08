@@ -1,6 +1,104 @@
-*{
-    margin: 0;
+// Main App Component Styling
+
+// Global Reset & Base Styles
+:host {
+    display: block;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  // Global Animation for Page Transitions
+  ::ng-deep router-outlet + * {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Global Button Styles
+  ::ng-deep button {
+    font-family: inherit;
+  }
+  
+  // Global Link Styles
+  ::ng-deep a {
+    color: #f5813e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: darken(#f5813e, 10%);
+    }
+  }
+  
+  // Global Form Styling
+  ::ng-deep input,
+  ::ng-deep textarea,
+  ::ng-deep select {
+    font-family: inherit;
+  }
+  
+  // Main Content Area
+  ::ng-deep main {
+    min-height: calc(100vh - 200px); // Adjust based on your header/footer height
+  }
+  
+  // Global Focus Styles for Accessibility
+  ::ng-deep :focus {
+    outline: 2px solid rgba(245, 129, 62, 0.5);
+    outline-offset: 2px;
+  }
+  
+  ::ng-deep :focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  ::ng-deep :focus-visible {
+    outline: 2px solid rgba(245, 129, 62, 0.5);
+    outline-offset: 2px;
+  }
+  
+  // Global Image Styling
+  ::ng-deep img {
+    max-width: 100%;
+  }
+  
+  // Utility Classes
+  ::ng-deep .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  ::ng-deep .text-center {
+    text-align: center;
+  }
+  
+  ::ng-deep .hidden {
+    display: none !important;
+  }
+  
+  ::ng-deep .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
     padding: 0;
-    box-sizing: border-box;
-    background-color: #f4c27f;
-}
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }

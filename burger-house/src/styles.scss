@@ -1,18 +1,268 @@
-@import './styles/variables.scss';
+/* You can add global styles to this file, and also import other style files */
 
-body{
-    background-color: $primary-color;
-    background-image: url('assets/images/wavy-pattern.png');
-    background-size: 1920px 1300px;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
+// Reset & Normalize
+*, *::before, *::after {
     box-sizing: border-box;
-    font-family: $font-family;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-}
+  }
+  
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  
+  // Variables
+  :root {
+    --primary-color: #f5813e;
+    --primary-color-dark: #e06923;
+    --primary-color-light: #ffa970;
+    --secondary-color: #333;
+    --text-color: #333;
+    --text-color-light: #666;
+    --background-color: #fff;
+    --background-color-light: #f9f9f9;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+  }
+  
+  // Typography
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+  }
+  
+  // Links
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+    
+    &:hover {
+      color: var(--primary-color-dark);
+    }
+  }
+  
+  // Buttons
+  button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  
+  // Forms
+  input, textarea, select {
+    font-family: inherit;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  // Custom Scrollbar
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
+  
+  // Common Animation Classes
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .slide-up {
+    animation: slideUp 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Utility Classes
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-right {
+    text-align: right;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  // Responsive margin & padding utilities
+  .m-1 { margin: 0.25rem; }
+  .m-2 { margin: 0.5rem; }
+  .m-3 { margin: 1rem; }
+  .m-4 { margin: 1.5rem; }
+  .m-5 { margin: 3rem; }
+  
+  .mt-1 { margin-top: 0.25rem; }
+  .mt-2 { margin-top: 0.5rem; }
+  .mt-3 { margin-top: 1rem; }
+  .mt-4 { margin-top: 1.5rem; }
+  .mt-5 { margin-top: 3rem; }
+  
+  .mb-1 { margin-bottom: 0.25rem; }
+  .mb-2 { margin-bottom: 0.5rem; }
+  .mb-3 { margin-bottom: 1rem; }
+  .mb-4 { margin-bottom: 1.5rem; }
+  .mb-5 { margin-bottom: 3rem; }
+  
+  .p-1 { padding: 0.25rem; }
+  .p-2 { padding: 0.5rem; }
+  .p-3 { padding: 1rem; }
+  .p-4 { padding: 1.5rem; }
+  .p-5 { padding: 3rem; }
+  
+  // Toast notification styles
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    z-index: 1000;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    
+    &.success {
+      background-color: #4caf50;
+    }
+    
+    &.error {
+      background-color: #f44336;
+    }
+    
+    &.warning {
+      background-color: #ff9800;
+    }
+  }
+  
+  // Responsive breakpoints
+  @media (max-width: 1200px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    h2 {
+      font-size: 1.6rem;
+    }
+    
+    h3 {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    h2 {
+      font-size: 1.4rem;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+  }

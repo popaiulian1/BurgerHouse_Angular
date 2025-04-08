@@ -1,0 +1,114 @@
+<header>
+    <nav class="header-nav">  
+        <div class="logo">
+            <a routerLink="/home">
+                <img src="../../../assets/images/logo/burger-house-logo-text.png" 
+                alt="Burger House Logo" class="logo-image" />
+            </a>
+        </div>
+    </nav>
+</header>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>Create an Account</h1>
+            <p>Join BurgerHouse and start ordering your favorite burgers!</p>
+        </div>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input 
+                        type="text" 
+                        id="firstName" 
+                        formControlName="firstName" 
+                        placeholder="Your first name"
+                        [ngClass]="{'is-invalid': submitted && f['firstName'].errors}"
+                    >
+                    <div *ngIf="submitted && f['firstName'].errors" class="error-message">
+                        <div *ngIf="f['firstName'].errors['required']">First name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input 
+                        type="text" 
+                        id="lastName" 
+                        formControlName="lastName" 
+                        placeholder="Your last name"
+                        [ngClass]="{'is-invalid': submitted && f['lastName'].errors}"
+                    >
+                    <div *ngIf="submitted && f['lastName'].errors" class="error-message">
+                        <div *ngIf="f['lastName'].errors['required']">Last name is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    formControlName="email" 
+                    placeholder="Your email address"
+                    [ngClass]="{'is-invalid': submitted && f['email'].errors}"
+                >
+                <div *ngIf="submitted && f['email'].errors" class="error-message">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['email']">Please enter a valid email</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-input">
+                    <input 
+                        [type]="showPassword ? 'text' : 'password'" 
+                        id="password" 
+                        formControlName="password" 
+                        placeholder="Create a password"
+                        [ngClass]="{'is-invalid': submitted && f['password'].errors}"
+                    >
+                    <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" title="Toggle password visibility">
+                        <i class="icon" [ngClass]="showPassword ? 'icon-eye-slash' : 'icon-eye'"></i>
+                    </button>
+                </div>
+                <div *ngIf="submitted && f['password'].errors" class="error-message">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                    <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+                </div>
+                <div class="password-strength" *ngIf="f['password'].value">
+                    <div class="strength-meter">
+                        <span [ngClass]="{ 'active': passwordStrength >= 1 }"></span>
+                        <span [ngClass]="{ 'active': passwordStrength >= 2 }"></span>
+                        <span [ngClass]="{ 'active': passwordStrength >= 3 }"></span>
+                        <span [ngClass]="{ 'active': passwordStrength >= 4 }"></span>
+                    </div>
+                    <span class="strength-text">{{ passwordStrengthText }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" formControlName="acceptTerms">
+                    <label for="terms">I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></label>
+                </div>
+                <div *ngIf="submitted && f['acceptTerms'].errors" class="error-message">
+                    <div *ngIf="f['acceptTerms'].errors['required']">You must accept the terms and conditions</div>
+                </div>
+            </div>
+
+            <button type="submit" class="signup-button" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Create Account</span>
+                <span *ngIf="isLoading" class="loader"></span>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+        </div>
+    </div>
+</div>

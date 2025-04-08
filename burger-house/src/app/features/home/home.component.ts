@@ -46,4 +46,8 @@ export class HomeComponent implements OnInit {
   navigateToSignup() {
     this.router.navigateByUrl('/signup');
   }
+
+  navigateToShop() {
+    this.router.navigateByUrl('/shop');
+  }
 }

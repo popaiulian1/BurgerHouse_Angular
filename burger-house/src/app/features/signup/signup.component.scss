@@ -1,0 +1,356 @@
+// Signup Component Styling with Colorful Theme
+@import '../../../styles/custom-theme';
+
+// Header Styling
+.header-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $secondary-color;
+  box-shadow: 0 2px 10px $shadow-color;
+  border-bottom: 3px solid $primary-color;
+  
+  .logo {
+    .logo-image {
+      height: 40px;
+    }
+  }
+}
+
+// Authentication Container
+.auth-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-color: $secondary-color-light;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+    url('../../../assets/images/wavy-pattern.png');
+  background-size: 300px;
+  
+  .auth-card {
+    width: 100%;
+    max-width: 500px;
+    background-color: $secondary-color;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-lg;
+    padding: 2.5rem;
+    border-top: 5px solid $primary-color;
+    
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      
+      h1 {
+        color: $primary-color;
+        font-size: $font-size-2xl;
+        margin-bottom: 0.5rem;
+        font-weight: $font-weight-bold;
+      }
+      
+      p {
+        color: $text-secondary;
+        font-size: $font-size-base;
+      }
+    }
+    
+    form {
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+        
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          font-size: $font-size-sm;
+        }
+        
+        input {
+          width: 100%;
+          padding: 0.8rem 1rem;
+          border: 1px solid $border-color;
+          border-radius: $border-radius-md;
+          font-size: $font-size-base;
+          transition: all $transition-speed-base $transition-timing;
+          
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+          }
+          
+          &.is-invalid {
+            border-color: $error-color;
+            box-shadow: 0 0 0 2px rgba($error-color, 0.1);
+          }
+        }
+        
+        .error-message {
+          color: $error-color;
+          font-size: $font-size-xs;
+          margin-top: 0.5rem;
+          font-weight: $font-weight-medium;
+        }
+        
+        .password-input {
+          position: relative;
+          
+          .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: $dark-gray;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color $transition-speed-fast $transition-timing;
+            
+            .password-icon {
+              display: block;
+              
+              svg {
+                display: block;
+              }
+              
+              &:hover {
+                color: $primary-color;
+              }
+            }
+            
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+        
+        .password-strength {
+          margin-top: 0.8rem;
+          
+          .strength-meter {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 5px;
+            
+            span {
+              height: 5px;
+              flex: 1;
+              background-color: $border-color;
+              border-radius: 5px;
+              
+              &.active {
+                &:nth-child(1) {
+                  background-color: $error-color; // Red for weak
+                }
+                
+                &:nth-child(2) {
+                  background-color: $warning-color; // Orange for fair
+                }
+                
+                &:nth-child(3) {
+                  background-color: $accent-color; // Green for good
+                }
+                
+                &:nth-child(4) {
+                  background-color: $info-color; // Blue for strong
+                }
+              }
+            }
+          }
+          
+          .strength-text {
+            font-size: $font-size-xs;
+            color: $text-light;
+          }
+        }
+        
+        .terms-checkbox {
+          display: flex;
+          align-items: flex-start;
+          
+          input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.8rem;
+            margin-top: 0.3rem;
+            accent-color: $primary-color;
+          }
+          
+          label {
+            margin-bottom: 0;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-sm;
+            
+            a {
+              color: $accent-color;
+              
+              &:hover {
+                color: $accent-color-dark;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      
+      .signup-button {
+        width: 100%;
+        @include primary-button;
+        padding: 0.9rem;
+        font-size: $font-size-base;
+        position: relative;
+        
+        &:disabled {
+          background-color: $primary-color-light;
+          cursor: not-allowed;
+        }
+        
+        .loader {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 2px solid rgba($secondary-color, 0.3);
+          border-radius: 50%;
+          border-top-color: $secondary-color;
+          animation: spin 0.8s ease infinite;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      }
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+      
+      &:before,
+      &:after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: $border-color;
+      }
+      
+      span {
+        padding: 0 1rem;
+        color: $text-light;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+      }
+    }
+    
+    .social-signup {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      
+      .social-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem;
+        border-radius: $border-radius-md;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        cursor: pointer;
+        transition: all $transition-speed-base $transition-timing;
+        
+        img {
+          width: 20px;
+          height: 20px;
+          margin-right: 0.8rem;
+        }
+        
+        &.google {
+          border: 1px solid $border-color;
+          background-color: $secondary-color;
+          color: $text-primary;
+          
+          &:hover {
+            background-color: $secondary-color-light;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px $shadow-color;
+          }
+        }
+        
+        &.facebook {
+          background-color: #3b5998;
+          color: $secondary-color;
+          border: none;
+          
+          &:hover {
+            background-color: darken(#3b5998, 5%);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(#3b5998, 0.4);
+          }
+        }
+      }
+    }
+    
+    .auth-footer {
+      text-align: center;
+      
+      p {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        
+        a {
+          color: $accent-color;
+          font-weight: $font-weight-medium;
+          transition: color $transition-speed-fast $transition-timing;
+          
+          &:hover {
+            color: $accent-color-dark;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 1rem;
+    
+    .auth-card {
+      padding: 1.5rem;
+      
+      .auth-header {
+        h1 {
+          font-size: $font-size-xl;
+        }
+      }
+      
+      form {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      .social-signup {
+        .social-button {
+          font-size: $font-size-xs;
+        }
+      }
+    }
+  }
+}

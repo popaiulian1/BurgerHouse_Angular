@@ -1,0 +1,473 @@
+// Shop Component Styling - Warm & Playful
+@import '../../../styles/custom-theme';
+
+// Header/Nav Styling
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.5rem;
+  background-color: $secondary-color;
+  box-shadow: $shadow-md;
+  position: relative;
+  z-index: 10;
+  border-bottom: 4px solid $primary-color;
+  border-radius: 0 0 $navbar-playful-curve $navbar-playful-curve;
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    li {
+      margin-right: 2rem;
+      position: relative;
+      
+      a {
+        text-decoration: none;
+        color: $text-primary;
+        font-weight: $font-weight-medium;
+        font-size: $font-size-base;
+        transition: all $transition-speed-base $transition-timing;
+        padding: 0.5rem 0;
+        position: relative;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background-color: $primary-color;
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform $transition-speed-base $transition-timing;
+        }
+        
+        &:hover {
+          color: $primary-color;
+          transform: translateY(-2px);
+          
+          &:after {
+            transform: scaleX(1);
+            transform-origin: left;
+          }
+        }
+      }
+      
+      .cart {
+        position: relative;
+        
+        .cart-icon {
+          width: 28px;
+          height: 28px;
+          transition: transform $transition-speed-base $transition-timing;
+          
+          &:hover {
+            transform: scale(1.1) rotate(5deg);
+          }
+        }
+      }
+    }
+  }
+  
+  .logo {
+    .logo-image {
+      height: 50px;
+      transition: transform $transition-speed-base $transition-timing;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// Main Shop Container
+.shop-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  
+  // Filters section
+  .filters {
+    background-color: $secondary-color;
+    border-radius: $border-radius-lg;
+    padding: 1.8rem;
+    margin-bottom: 3rem;
+    box-shadow: $shadow-md;
+    border: 3px solid $white;
+    outline: 2px dashed $primary-color-light;
+    outline-offset: 5px;
+    position: relative;
+    overflow: hidden;
+    
+    &:before {
+      content: "🔍";
+      position: absolute;
+      font-size: 6rem;
+      right: -15px;
+      bottom: -25px;
+      opacity: 0.1;
+      transform: rotate(15deg);
+    }
+    
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: $primary-color;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      display: inline-block;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, $primary-color, $accent-color);
+        border-radius: 4px;
+      }
+    }
+    
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: $font-size-base;
+        color: $text-primary;
+        transition: all $transition-speed-base $transition-timing;
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius-md;
+        background-color: $secondary-color-light;
+        
+        &:hover {
+          background-color: $secondary-color-dark;
+          transform: translateY(-2px);
+          box-shadow: $shadow-sm;
+        }
+        
+        input[type="checkbox"] {
+          margin-right: 0.8rem;
+          cursor: pointer;
+          accent-color: $primary-color;
+          transform: scale(1.2);
+          transition: all $transition-speed-base $transition-timing;
+          
+          &:checked + span {
+            color: $primary-color;
+            font-weight: $font-weight-medium;
+          }
+        }
+      }
+    }
+  }
+  
+  // Burger Grid
+  .burger-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    
+    // Individual Burger Card
+    .burger-card {
+      border-radius: $border-radius-xl;
+      overflow: hidden;
+      box-shadow: $shadow-md;
+      transition: all $transition-speed-base $transition-timing;
+      background-color: $secondary-color;
+      border: 5px solid $white;
+      position: relative;
+      
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background-color: $primary-color;
+        z-index: 1;
+      }
+      
+      &:hover {
+        transform: translateY(-10px) rotate(1deg);
+        box-shadow: $shadow-lg;
+        
+        &:nth-child(even) {
+          transform: translateY(-10px) rotate(-1deg);
+        }
+      }
+      
+      .burger-image {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: transform 0.7s ease;
+        }
+        
+        &:hover img {
+          transform: scale(1.08);
+        }
+        
+        .burger-badges {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          z-index: 2;
+          
+          .badge {
+            font-size: $font-size-xs;
+            font-weight: $font-weight-bold;
+            padding: 6px 12px;
+            border-radius: $border-radius-circle;
+            text-transform: uppercase;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: all $transition-speed-base $transition-timing;
+            
+            &:hover {
+              transform: scale(1.1) rotate(-3deg);
+            }
+            
+            &.new {
+              background-color: $accent-color;
+              color: $text-on-accent;
+            }
+            
+            &.popular {
+              background-color: $primary-color;
+              color: $text-on-primary;
+            }
+            
+            &.vegetarian {
+              background-color: #8bc34a;
+              color: $secondary-color;
+            }
+            
+            &.spicy {
+              background-color: #ff9800;
+              color: $secondary-color;
+            }
+          }
+        }
+      }
+      
+      .burger-details {
+        padding: 1.8rem;
+        
+        h3 {
+          margin-top: 0;
+          margin-bottom: 0.8rem;
+          color: $primary-color;
+          font-size: $font-size-xl;
+          font-weight: $font-weight-bold;
+          position: relative;
+          display: inline-block;
+          
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: $accent-color;
+            border-radius: 3px;
+            transition: width $transition-speed-base $transition-timing;
+          }
+          
+          &:hover:after {
+            width: 100%;
+          }
+        }
+        
+        .description {
+          color: $text-secondary;
+          font-size: $font-size-base;
+          margin-bottom: 1.2rem;
+          line-height: $line-height-loose;
+        }
+        
+        .ingredients {
+          font-size: $font-size-sm;
+          color: $text-light;
+          margin-bottom: 1.8rem;
+          line-height: $line-height-base;
+          padding: 0.8rem;
+          background-color: $secondary-color-light;
+          border-radius: $border-radius-md;
+          border-left: 3px solid $accent-color-light;
+          
+          strong {
+            color: $text-primary;
+            font-weight: $font-weight-semibold;
+          }
+        }
+        
+        .price-action {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          
+          .price {
+            font-size: $font-size-xl;
+            font-weight: $font-weight-bold;
+            color: $primary-color;
+            position: relative;
+            
+            &:before {
+              content: '';
+              position: absolute;
+              top: -8px;
+              left: 0;
+              width: 100%;
+              height: 30px;
+              background-color: rgba($accent-color, 0.15);
+              z-index: -1;
+              transform: rotate(-2deg);
+              border-radius: 3px;
+            }
+          }
+          
+          .add-to-cart {
+            @include primary-button;
+            padding: 0.7rem 1.5rem;
+            font-size: $font-size-base;
+            border-radius: $border-radius-lg;
+            position: relative;
+            overflow: hidden;
+            
+            &:hover {
+              transform: translateY(-5px) rotate(1deg);
+              
+              &:before {
+                transform: scaleX(1);
+              }
+              
+              &:after {
+                transform: translateY(0);
+              }
+            }
+            
+            &:active {
+              transform: translateY(-2px);
+            }
+            
+            &:after {
+              content: '🛒';
+              position: absolute;
+              top: 50%;
+              right: 10px;
+              transform: translateY(50px);
+              font-size: 1.2em;
+              transition: transform 0.4s $transition-timing;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // No results message
+  .no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: $secondary-color;
+    border-radius: $border-radius-xl;
+    border: 5px solid $white;
+    outline: 2px dashed $primary-color-light;
+    outline-offset: 5px;
+    margin-top: 2rem;
+    
+    p {
+      color: $text-secondary;
+      font-size: $font-size-lg;
+      margin-bottom: 2rem;
+    }
+    
+    &:before {
+      content: "😢";
+      display: block;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .header-nav {
+    flex-direction: column;
+    padding: 1rem;
+    
+    .nav-links {
+      margin-bottom: 1rem;
+      
+      li {
+        margin-right: 1rem;
+      }
+    }
+  }
+  
+  .shop-container {
+    .filters {
+      .filter-options {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+    }
+    
+    .burger-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-container {
+    .burger-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .burger-card {
+      .burger-details {
+        .price-action {
+          flex-direction: column;
+          gap: 1.5rem;
+          
+          .price {
+            margin-bottom: 0.5rem;
+          }
+          
+          .add-to-cart {
+            width: 100%;
+            
+            &:after {
+              right: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

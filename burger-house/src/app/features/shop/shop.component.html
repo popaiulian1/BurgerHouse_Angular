@@ -1,1 +1,72 @@
-<p>shop works!</p>
+<header>
+    <nav class="header-nav">
+        <ul class="nav-links">
+            <li>
+                <div class="cart">
+                    <a href="/cart">
+                        <img src="assets/images/cart-icon.png" alt="Cart Icon" class="cart-icon" />
+                    </a>
+                </div>
+            </li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>   
+        <div class="logo">
+            <img src="assets/images/logo/burger-house-logo-text.png" 
+            alt="Burger House Logo" class="logo-image" />
+        </div>
+    </nav>
+</header>
+
+<div class="shop-container">
+    <div class="filters">
+        <h3>Filter By:</h3>
+        <div class="filter-options">
+            <label>
+                <input type="checkbox" [(ngModel)]="filters.isVegetarian"> Vegetarian
+            </label>
+            <label>
+                <input type="checkbox" [(ngModel)]="filters.isGlutenFree"> Gluten Free
+            </label>
+            <label>
+                <input type="checkbox" [(ngModel)]="filters.isSpicy"> Spicy
+            </label>
+            <label>
+                <input type="checkbox" [(ngModel)]="filters.isPopular"> Popular
+            </label>
+            <label>
+                <input type="checkbox" [(ngModel)]="filters.isNew"> New
+            </label>
+        </div>
+    </div>
+
+    <div class="burger-grid">
+        <div class="burger-card" *ngFor="let burger of filteredBurgers">
+            <div class="burger-image">
+                <img [src]="burger.imageUrl" [alt]="burger.name">
+                <div class="burger-badges">
+                    <span class="badge new" *ngIf="burger.isNew">NEW</span>
+                    <span class="badge popular" *ngIf="burger.isPopular">POPULAR</span>
+                    <span class="badge vegetarian" *ngIf="burger.isVegetarian">VEGGIE</span>
+                    <span class="badge spicy" *ngIf="burger.isSpicy">SPICY</span>
+                </div>
+            </div>
+            <div class="burger-details">
+                <h3>{{ burger.name }}</h3>
+                <p class="description">{{ burger.description }}</p>
+                <p class="ingredients">
+                    <strong>Ingredients:</strong> {{ burger.ingredients.join(', ') }}
+                </p>
+                <div class="price-action">
+                    <span class="price">${{ burger.price.toFixed(2) }}</span>
+                    <button class="add-to-cart" (click)="addToCart(burger)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="no-results" *ngIf="filteredBurgers.length === 0">
+        <p>No burgers match your selected filters. Please try different options.</p>
+    </div>
+</div>

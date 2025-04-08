@@ -1,21 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Burger } from '../../core/burger/burger.interface';
+import { BurgerService } from '../../core/burger/burger.service';
 
 @Component({
   selector: 'app-shop',
-  imports: [],
   standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'
 })
-export class ShopComponent {
-  burgers = [
-    {name: 'Cheeseburger', price: '$5.99'},
-    {name: 'Bacon Cheeseburger', price: '$6.99'},
-    {name: 'Double Cheeseburger', price: '$7.99'},
-    {name: 'Veggie Burger', price: '$5.99'},
-    {name: 'Chicken Burger', price: '$6.99'},
-    {name: 'Fish Burger', price: '$4.99'},
-    {name: 'Turkey Burger', price: '$5.99'},
-    {name: 'Buffalo Burger', price: '$6.99'}
-  ];
+export class ShopComponent implements OnInit {
+  burgers: Burger[] = [];
+  filteredBurgers: Burger[] = [];
+  filters = {
+    isVegetarian: false,
+    isGlutenFree: false,
+    isSpicy: false,
+    isPopular: false,
+    isNew: false
+  };
+  
+  cart: Burger[] = [];
+
+  constructor(private burgerService: BurgerService) {}
+
+  ngOnInit(): void {
+    this.burgerService.getBurgers().subscribe(
+      (data) => {
+        this.burgers = data;
+        this.applyFilters();
+      },
+      (error) => {
+        console.error('Error fetching burgers:', error);
+      }
+    );
+  }
+
+  applyFilters(): void {
+    // Start with all burgers
+    this.filteredBurgers = this.burgers;
+
+    // Apply each active filter
+    if (this.filters.isVegetarian) {
+      this.filteredBurgers = this.filteredBurgers.filter(burger => burger.isVegetarian);
+    }
+    
+    if (this.filters.isGlutenFree) {
+      this.filteredBurgers = this.filteredBurgers.filter(burger => burger.isGlutenFree);
+    }
+    
+    if (this.filters.isSpicy) {
+      this.filteredBurgers = this.filteredBurgers.filter(burger => burger.isSpicy);
+    }
+    
+    if (this.filters.isPopular) {
+      this.filteredBurgers = this.filteredBurgers.filter(burger => burger.isPopular);
+    }
+    
+    if (this.filters.isNew) {
+      this.filteredBurgers = this.filteredBurgers.filter(burger => burger.isNew);
+    }
+  }
+
+  addToCart(burger: Burger): void {
+    this.cart.push(burger);
+    console.log('Added to cart:', burger.name);
+    console.log('Current cart:', this.cart);
+    // In a real app, you would implement proper cart service
+  }
 }
