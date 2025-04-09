@@ -74,6 +74,7 @@
   }
   
   .logo {
+    margin-left: -100px;
     .logo-image {
       height: 50px;
       transition: transform $transition-speed-base $transition-timing;

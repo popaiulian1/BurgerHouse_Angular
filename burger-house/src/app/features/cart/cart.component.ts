@@ -71,5 +71,6 @@ export class CartComponent implements OnInit, OnDestroy {
   checkout(): void {
     alert('Alright bro, you checked out!');
     console.log('Checking out with items:', this.cartItems);
+    this.cartService.clearCart();
   }
 }

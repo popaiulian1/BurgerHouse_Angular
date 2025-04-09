@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="burger-details">
-                <h3>{{ burger.name }}</h3>
+                <h3 class="burger-name">{{ burger.name }}</h3>
                 <p class="description">{{ burger.description }}</p>
                 <p class="ingredients">
                     <strong>Ingredients:</strong> {{ burger.ingredients.join(', ') }}
@@ -68,5 +68,9 @@
 
     <div class="no-results" *ngIf="filteredBurgers.length === 0">
         <p>No burgers match your selected filters. Please try different options.</p>
+    </div>
+
+    <div class = "add-to-cart-notification" *ngIf="notification">
+        {{notification}}
     </div>
 </div>

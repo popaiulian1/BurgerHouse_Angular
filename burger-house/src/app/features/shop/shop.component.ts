@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Burger } from '../../core/burger/burger.interface';
 import { BurgerService } from '../../core/burger/burger.service';
+import { CartComponent } from '../cart/cart.component';
+import { CartService } from '../../core/cart/cart.service';
 
 @Component({
   selector: 'app-shop',
@@ -23,8 +25,12 @@ export class ShopComponent implements OnInit {
   };
   
   cart: Burger[] = [];
+  notification: string | null = null;
 
-  constructor(private burgerService: BurgerService) {}
+  constructor(
+    private burgerService: BurgerService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.burgerService.getBurgers().subscribe(
@@ -65,9 +71,14 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(burger: Burger): void {
-    this.cart.push(burger);
-    console.log('Added to cart:', burger.name);
-    console.log('Current cart:', this.cart);
-    // In a real app, you would implement proper cart service
+    this.cartService.addToCart(burger);
+
+    this.notification = `${burger.name} added to cart!`;
+  
+  // Clear notification after 3 seconds
+  setTimeout(() => {
+    this.notification = null;
+  }, 3000);
+
   }
 }
