@@ -39,10 +39,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // You could add logic here to check if the user is already logged in
+    // Check if user is already logged in
   }
 
-  // Getter for easy access to form fields
   get f() { 
     return this.loginForm.controls; 
   }
@@ -63,10 +62,10 @@ export class LoginComponent implements OnInit {
 
     // Simulate API call
     setTimeout(() => {
-      // In a real application, you would call an authentication service
+      // call an authentication service stand in
       console.log('Login form submitted:', this.loginForm.value);
       
-      // Store user details in localStorage or a service
+      // store user details in localStorage or a service
       localStorage.setItem('currentUser', JSON.stringify({
         email: this.loginForm.value.email,
         token: 'fake-jwt-token'

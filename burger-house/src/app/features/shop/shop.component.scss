@@ -1,7 +1,5 @@
-// Shop Component Styling - Warm & Playful
 @import '../../../styles/custom-theme';
 
-// Header/Nav Styling
 .header-nav {
   display: flex;
   justify-content: space-between;
@@ -85,13 +83,11 @@
   }
 }
 
-// Main Shop Container
 .shop-container {
   max-width: 1200px;
   margin: 3rem auto;
   padding: 0 1.5rem;
   
-  // Filters section
   .filters {
     background-color: $secondary-color;
     border-radius: $border-radius-lg;
@@ -179,13 +175,10 @@
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2.5rem;
     
-    // Individual Burger Card
+    // Burger Card
     .burger-card {
+      @include burger-card;
       border-radius: $border-radius-xl;
-      overflow: hidden;
-      box-shadow: $shadow-md;
-      transition: all $transition-speed-base $transition-timing;
-      background-color: $secondary-color;
       border: 5px solid $white;
       position: relative;
       
@@ -413,7 +406,6 @@
   }
 }
 
-// Responsive adjustments
 @media (max-width: 768px) {
   .header-nav {
     flex-direction: column;

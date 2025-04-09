@@ -1,18 +1,8 @@
-// Cart Component Styling - Warm & Playful
 @import '../../../styles/custom-theme';
 
 // Header and Navigation
 .header-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2.5rem;
-  background-color: $secondary-color;
-  box-shadow: $shadow-md;
-  position: relative;
-  z-index: 10;
-  border-bottom: 4px solid $primary-color;
-  border-radius: 0 0 $navbar-playful-curve $navbar-playful-curve;
+  @include header-nav;
   
   .nav-links {
     display: flex;
@@ -85,9 +75,8 @@
   }
 }
 
-// Cart Container
 .cart-container {
-  @include playful-gradient-bg;
+  @include gradient-bg;
   padding: 4rem 1rem 6rem;
   position: relative;
   
@@ -114,7 +103,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-weight: $font-weight-bold;
-    @include playful-title;
+    @include title;
     
     &:before {
       content: "🛒";
@@ -382,7 +371,7 @@
       }
     }
     
-    // Cart Summary Section - Inverted colors
+    // Cart Summary Section
     .cart-summary {
       background-color: $primary-color;
       border-radius: $border-radius-xl;
@@ -393,7 +382,6 @@
       border: 5px solid darken($primary-color, 10%);
       position: relative;
       
-      // Summary header with decorative elements
       h3 {
         margin-top: 0;
         margin-bottom: 2rem;
@@ -526,7 +514,6 @@
   }
 }
 
-// Responsive adjustments
 @media (max-width: 992px) {
   .cart-container {
     .cart-content {

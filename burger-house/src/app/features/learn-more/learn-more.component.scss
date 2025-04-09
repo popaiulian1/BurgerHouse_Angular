@@ -1,4 +1,3 @@
-// Learn More Component Styling with Colorful Theme
 @import '../../../styles/custom-theme';
 
 // Header and Navigation
@@ -124,13 +123,11 @@
   border-radius: 0 $border-radius-md $border-radius-md 0;
 }
 
-// Emphasize the year founded
 .learn-more-container h2:first-of-type strong {
   color: $primary-color;
   font-weight: $font-weight-semibold;
 }
 
-// Responsive adjustments
 @media (max-width: 768px) {
   .learn-more-container {
     padding: 0 1.5rem;

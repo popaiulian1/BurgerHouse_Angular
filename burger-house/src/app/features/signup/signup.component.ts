@@ -49,7 +49,6 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  // Getter for easy access to form fields
   get f() { 
     return this.signupForm.controls; 
   }
@@ -118,10 +117,10 @@ export class SignupComponent implements OnInit {
 
     // Simulate API call
     setTimeout(() => {
-      // In a real application, you would call a registration service
+      // call registration service stand in
       console.log('Signup form submitted:', this.signupForm.value);
       
-      // Store user details in localStorage or a service
+      // store user details in localStorage or a service
       localStorage.setItem('currentUser', JSON.stringify({
         firstName: this.signupForm.value.firstName,
         lastName: this.signupForm.value.lastName,

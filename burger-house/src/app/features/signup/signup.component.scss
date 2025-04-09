@@ -1,7 +1,5 @@
-// Signup Component Styling with Colorful Theme
 @import '../../../styles/custom-theme';
 
-// Header Styling
 .header-nav {
   display: flex;
   justify-content: center;
@@ -18,7 +16,6 @@
   }
 }
 
-// Authentication Container
 .auth-container {
   min-height: calc(100vh - 80px);
   display: flex;

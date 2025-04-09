@@ -1,7 +1,5 @@
-// Login Component Styling - Warm & Playful
 @import '../../../styles/custom-theme';
 
-// Header Styling
 .header-nav {
   display: flex;
   justify-content: center;
@@ -25,14 +23,13 @@
   }
 }
 
-// Authentication Container
 .auth-container {
   min-height: calc(100vh - 100px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem 1.5rem;
-  @include playful-gradient-bg;
+  @include gradient-bg;
   background-image: 
     radial-gradient(circle at 20% 90%, rgba($accent-color, 0.1) 0%, transparent 20%),
     radial-gradient(circle at 90% 10%, rgba($primary-color, 0.1) 0%, transparent 30%),
@@ -424,7 +421,6 @@
   }
 }
 
-// Responsive adjustments
 @media (max-width: 600px) {
   .auth-container {
     padding: 2rem 1rem;
