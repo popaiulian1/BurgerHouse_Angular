@@ -1,24 +1,61 @@
-# BurgerHouse_Angular
- Website made using Angular.
+# BurgerHouse
+ Website made using Angular for a made-up burger restaurant.
 
-## Home-page:
+## Features
+1. Responsive design that works on all devices
+1. Interactive menu with filtering options
+1. Shopping cart functionality
+1. User authentication (login/signup)
+1. About page with restaurant history
+
+## Technologies
+1. Angular 19
+1. TypeScript
+1. SCSS for styling
+1. Responsive design principles
+1. Form validation
+1. Angular Routing
+
+## 🛠️Get it working on your machine
+1. Clone the repository
+
+```bash
+git clone https://github.com/popaiulian1/BurgerHouse_Angular.git
+cd BurgerHouse_Angular/burger-house
+```
+1. Install dependencies
+
+```bash
+npm install
+```
+
+1. Start the development server
+
+```bash
+ng serve
+```
+
+1. Open your browser and navigate to [local](http://localhost:4200/)
+
+## 📸Screenshots
+### Home-page:
 ![homepage](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/homepage.jpg)  
 
-## Menu:
+### Menu:
 ![shop](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/shop.jpg)  
 
-## About:
+### About:
 ![about](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/about.jpg)  
 
-## Cart:
+### Cart:
 ![cart](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/cart.jpg)  
 
-## Cart - Empty:
+### Cart - Empty:
 ![cart-empty](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/cart-empty.jpg)  
 
-## Login:
+### Login:
 ![login](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/login.jpg)  
 
-## Signup:
+### Signup:
 ![signup](https://github.com/popaiulian1/BurgerHouse_Angular/blob/main/burger-house/src/assets/images/previews/signup.jpg)  
  
