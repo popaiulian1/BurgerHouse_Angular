@@ -11,7 +11,7 @@
             </li>
             <li><a href="/shop">Menu</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a (click)="scrollToContact($event)">Contact</a></li>
         </ul>   
         <div class="logo">
             <img src="assets/images/logo/burger-house-logo-text.png" 
@@ -34,12 +34,14 @@
 <div class="featured">
     <h2>Want a taste?</h2>
     <div class="featured-burgers">
-        <div class="burger-item" *ngFor="let burger of featuredBurgers">
-            <div class="burger-photo">
-                <img [src]="burger.imageUrl" alt="{{burger.name}}" />
+        @for (burger of featuredBurgers; track burger.id) {
+            <div class="burger-item" (click)="navigateToShop()">
+                <div class="burger-photo">
+                    <img [src]="burger.imageUrl" alt="{{burger.name}}" />
+                </div>
+                <h3>{{burger.name}}</h3>
             </div>
-            <h3>{{burger.name}}</h3>
-        </div>
+        }
     </div>
     <button class="shop-button" (click)="navigateToShop()">Shop all</button>
 </div>
@@ -58,7 +60,7 @@
     </div>
   </div>
 
-<div class="contact">
+<div id="contact-section" class="contact">
     <div class=" contact-container">
         <div class="contact-text-container">
             <h2>Contact Us</h2>

@@ -10,7 +10,7 @@
             </li>
             <li><a href="/home">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a (click)="scrollToContact($event)">Contact</a></li>
         </ul>   
         <div class="logo">
             <img src="assets/images/logo/burger-house-logo-text.png" 
@@ -20,57 +20,84 @@
 </header>
 
 <div class="shop-container">
-    <div class="filters">
-        <h3>Filter By:</h3>
-        <div class="filter-options">
-            <label>
-                <input type="checkbox" [(ngModel)]="filters.isVegetarian"> Vegetarian
-            </label>
-            <label>
-                <input type="checkbox" [(ngModel)]="filters.isGlutenFree"> Gluten Free
-            </label>
-            <label>
-                <input type="checkbox" [(ngModel)]="filters.isSpicy"> Spicy
-            </label>
-            <label>
-                <input type="checkbox" [(ngModel)]="filters.isPopular"> Popular
-            </label>
-            <label>
-                <input type="checkbox" [(ngModel)]="filters.isNew"> New
-            </label>
+    <div class="search-bar">
+        <h3>Search Burgers</h3>
+        <div class="search-input">
+            <input 
+                type="text" 
+                [(ngModel)]="searchQuery" 
+                (ngModelChange)="applyFilters()" 
+                placeholder="Search by burger name..."
+            >
+            <span class="search-icon">🔍</span>
+        </div>
+    </div>
+    
+    <div class="shop-content">
+        <div class="filters-sidebar">
+            <h3>Filter By:</h3>
+            <div class="filter-options">
+                <label>
+                    <input type="checkbox" [(ngModel)]="filters.isVegetarian" (change)="applyFilters()"> Vegetarian
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="filters.isGlutenFree" (change)="applyFilters()"> Gluten Free
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="filters.isSpicy" (change)="applyFilters()"> Spicy
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="filters.isPopular" (change)="applyFilters()"> Popular
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="filters.isNew" (change)="applyFilters()"> New
+                </label>
+            </div>
+        </div>
+
+        <div class="burger-grid">
+            @for (burger of filteredBurgers; track burger.id) {
+                <div class="burger-card">
+                    <div class="burger-image">
+                        <img [src]="burger.imageUrl" [alt]="burger.name">
+                        <div class="burger-badges">
+                            @if (burger.isNew) {
+                                <span class="badge new">NEW</span>
+                            }
+                            @if (burger.isPopular) {
+                                <span class="badge popular">POPULAR</span>
+                            }
+                            @if (burger.isVegetarian) {
+                                <span class="badge vegetarian">VEGGIE</span>
+                            }
+                            @if (burger.isSpicy) {
+                                <span class="badge spicy">SPICY</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="burger-details">
+                        <h3 class="burger-name">{{ burger.name }}</h3>
+                        <p class="description">{{ burger.description }}</p>
+                        <p class="ingredients">
+                            <strong>Ingredients:</strong> {{ burger.ingredients.join(', ') }}
+                        </p>
+                        <div class="price-action">
+                            <span class="price">${{ burger.price.toFixed(2) }}</span>
+                            <button class="add-to-cart" (click)="addToCart(burger)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            } @empty {
+                <div class="no-results">
+                    <p>No burgers match your selected filters or search query. Please try different options.</p>
+                </div>
+            }
         </div>
     </div>
 
-    <div class="burger-grid">
-        <div class="burger-card" *ngFor="let burger of filteredBurgers">
-            <div class="burger-image">
-                <img [src]="burger.imageUrl" [alt]="burger.name">
-                <div class="burger-badges">
-                    <span class="badge new" *ngIf="burger.isNew">NEW</span>
-                    <span class="badge popular" *ngIf="burger.isPopular">POPULAR</span>
-                    <span class="badge vegetarian" *ngIf="burger.isVegetarian">VEGGIE</span>
-                    <span class="badge spicy" *ngIf="burger.isSpicy">SPICY</span>
-                </div>
-            </div>
-            <div class="burger-details">
-                <h3 class="burger-name">{{ burger.name }}</h3>
-                <p class="description">{{ burger.description }}</p>
-                <p class="ingredients">
-                    <strong>Ingredients:</strong> {{ burger.ingredients.join(', ') }}
-                </p>
-                <div class="price-action">
-                    <span class="price">${{ burger.price.toFixed(2) }}</span>
-                    <button class="add-to-cart" (click)="addToCart(burger)">Add to Cart</button>
-                </div>
-            </div>
+    @if (notification) {
+        <div class="add-to-cart-notification">
+            {{notification}}
         </div>
-    </div>
-
-    <div class="no-results" *ngIf="filteredBurgers.length === 0">
-        <p>No burgers match your selected filters. Please try different options.</p>
-    </div>
-
-    <div class = "add-to-cart-notification" *ngIf="notification">
-        {{notification}}
-    </div>
+    }
 </div>

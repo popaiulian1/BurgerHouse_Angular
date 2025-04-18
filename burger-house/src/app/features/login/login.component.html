@@ -26,10 +26,16 @@
                     placeholder="Enter your email"
                     [ngClass]="{'is-invalid': submitted && f['email'].errors}"
                 >
-                <div *ngIf="submitted && f['email'].errors" class="error-message">
-                    <div *ngIf="f['email'].errors['required']">Email is required</div>
-                    <div *ngIf="f['email'].errors['email']">Please enter a valid email</div>
-                </div>
+                @if (submitted && f['email'].errors) {
+                    <div class="error-message">
+                        @if (f['email'].errors['required']) {
+                            <div>Email is required</div>
+                        }
+                        @if (f['email'].errors['email']) {
+                            <div>Please enter a valid email</div>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-group">
@@ -46,10 +52,16 @@
                         <span class="password-icon" [innerHTML]="showPassword ? eyeSlashIcon : eyeIcon"></span>
                     </button>
                 </div>
-                <div *ngIf="submitted && f['password'].errors" class="error-message">
-                    <div *ngIf="f['password'].errors['required']">Password is required</div>
-                    <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
-                </div>
+                @if (submitted && f['password'].errors) {
+                    <div class="error-message">
+                        @if (f['password'].errors['required']) {
+                            <div>Password is required</div>
+                        }
+                        @if (f['password'].errors['minlength']) {
+                            <div>Password must be at least 6 characters</div>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-options">
@@ -61,8 +73,12 @@
             </div>
 
             <button type="submit" class="login-button" [disabled]="isLoading">
-                <span *ngIf="!isLoading">Sign In</span>
-                <span *ngIf="isLoading" class="loader"></span>
+                @if (!isLoading) {
+                    <span>Sign In</span>
+                }
+                @if (isLoading) {
+                    <span class="loader"></span>
+                }
             </button>
         </form>
 

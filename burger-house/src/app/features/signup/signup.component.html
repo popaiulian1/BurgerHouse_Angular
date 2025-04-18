@@ -13,7 +13,7 @@
     <div class="auth-card">
         <div class="auth-header">
             <h1>Create an Account</h1>
-            <p>Join BurgerHouse and start ordering your favorite burgers!</p>
+            <p>Join us to order your favorite burgers!</p>
         </div>
 
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
@@ -27,9 +27,13 @@
                         placeholder="Your first name"
                         [ngClass]="{'is-invalid': submitted && f['firstName'].errors}"
                     >
-                    <div *ngIf="submitted && f['firstName'].errors" class="error-message">
-                        <div *ngIf="f['firstName'].errors['required']">First name is required</div>
-                    </div>
+                    @if (submitted && f['firstName'].errors) {
+                        <div class="error-message">
+                            @if (f['firstName'].errors['required']) {
+                                <div>First name is required</div>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-group">
@@ -41,9 +45,13 @@
                         placeholder="Your last name"
                         [ngClass]="{'is-invalid': submitted && f['lastName'].errors}"
                     >
-                    <div *ngIf="submitted && f['lastName'].errors" class="error-message">
-                        <div *ngIf="f['lastName'].errors['required']">Last name is required</div>
-                    </div>
+                    @if (submitted && f['lastName'].errors) {
+                        <div class="error-message">
+                            @if (f['lastName'].errors['required']) {
+                                <div>Last name is required</div>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
 
@@ -56,10 +64,16 @@
                     placeholder="Your email address"
                     [ngClass]="{'is-invalid': submitted && f['email'].errors}"
                 >
-                <div *ngIf="submitted && f['email'].errors" class="error-message">
-                    <div *ngIf="f['email'].errors['required']">Email is required</div>
-                    <div *ngIf="f['email'].errors['email']">Please enter a valid email</div>
-                </div>
+                @if (submitted && f['email'].errors) {
+                    <div class="error-message">
+                        @if (f['email'].errors['required']) {
+                            <div>Email is required</div>
+                        }
+                        @if (f['email'].errors['email']) {
+                            <div>Please enter a valid email</div>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-group">
@@ -73,42 +87,47 @@
                         [ngClass]="{'is-invalid': submitted && f['password'].errors}"
                     >
                     <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" title="Toggle password visibility">
-                        <i class="icon" [ngClass]="showPassword ? 'icon-eye-slash' : 'icon-eye'"></i>
+                        <span class="password-icon" [innerHTML]="showPassword ? eyeSlashIcon : eyeIcon"></span>
                     </button>
                 </div>
-                <div *ngIf="submitted && f['password'].errors" class="error-message">
-                    <div *ngIf="f['password'].errors['required']">Password is required</div>
-                    <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
-                </div>
-                <div class="password-strength" *ngIf="f['password'].value">
-                    <div class="strength-meter">
-                        <span [ngClass]="{ 'active': passwordStrength >= 1 }"></span>
-                        <span [ngClass]="{ 'active': passwordStrength >= 2 }"></span>
-                        <span [ngClass]="{ 'active': passwordStrength >= 3 }"></span>
-                        <span [ngClass]="{ 'active': passwordStrength >= 4 }"></span>
+                @if (submitted && f['password'].errors) {
+                    <div class="error-message">
+                        @if (f['password'].errors['required']) {
+                            <div>Password is required</div>
+                        }
+                        @if (f['password'].errors['minlength']) {
+                            <div>Password must be at least 6 characters</div>
+                        }
                     </div>
-                    <span class="strength-text">{{ passwordStrengthText }}</span>
-                </div>
+                }
             </div>
 
             <div class="form-group">
                 <div class="terms-checkbox">
                     <input type="checkbox" id="terms" formControlName="acceptTerms">
-                    <label for="terms">I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></label>
+                    <label for="terms">I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a></label>
                 </div>
-                <div *ngIf="submitted && f['acceptTerms'].errors" class="error-message">
-                    <div *ngIf="f['acceptTerms'].errors['required']">You must accept the terms and conditions</div>
-                </div>
+                @if (submitted && f['acceptTerms'].errors) {
+                    <div class="error-message">
+                        @if (f['acceptTerms'].errors['required']) {
+                            <div>You must accept the terms and conditions</div>
+                        }
+                    </div>
+                }
             </div>
 
-            <button type="submit" class="signup-button" [disabled]="isLoading">
-                <span *ngIf="!isLoading">Create Account</span>
-                <span *ngIf="isLoading" class="loader"></span>
+            <button type="submit" class="login-button" [disabled]="isLoading">
+                @if (!isLoading) {
+                    <span>Create Account</span>
+                }
+                @if (isLoading) {
+                    <span class="loader"></span>
+                }
             </button>
         </form>
 
         <div class="auth-footer">
-            <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+            <p>Already have an account? <a routerLink="/login" style="cursor: pointer;">Sign In</a></p>
         </div>
     </div>
 </div>

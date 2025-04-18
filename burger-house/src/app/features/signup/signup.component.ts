@@ -15,8 +15,6 @@ export class SignupComponent implements OnInit {
   isLoading = false;
   submitted = false;
   showPassword = false;
-  passwordStrength = 0;
-  passwordStrengthText = '';
   
   // SVG icons for password visibility toggle
   eyeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -34,19 +32,16 @@ export class SignupComponent implements OnInit {
     private router: Router
   ) {
     this.signupForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      acceptTerms: [false, Validators.requiredTrue]
+      acceptTerms: [false, [Validators.requiredTrue]]
     });
   }
 
   ngOnInit(): void {
-    // Password strength checker
-    this.signupForm.get('password')?.valueChanges.subscribe(password => {
-      this.checkPasswordStrength(password);
-    });
+    // Initialization logic
   }
 
   get f() { 
@@ -55,54 +50,6 @@ export class SignupComponent implements OnInit {
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
-  }
-
-  checkPasswordStrength(password: string): void {
-    this.passwordStrength = 0;
-    
-    if (!password) {
-      this.passwordStrengthText = '';
-      return;
-    }
-    
-    // Check length
-    if (password.length >= 8) {
-      this.passwordStrength += 1;
-    }
-    
-    // Check for lowercase and uppercase
-    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) {
-      this.passwordStrength += 1;
-    }
-    
-    // Check for numbers
-    if (/[0-9]/.test(password)) {
-      this.passwordStrength += 1;
-    }
-    
-    // Check for special characters
-    if (/[^A-Za-z0-9]/.test(password)) {
-      this.passwordStrength += 1;
-    }
-    
-    // Set text based on strength
-    switch (this.passwordStrength) {
-      case 0:
-      case 1:
-        this.passwordStrengthText = 'Weak';
-        break;
-      case 2:
-        this.passwordStrengthText = 'Fair';
-        break;
-      case 3:
-        this.passwordStrengthText = 'Good';
-        break;
-      case 4:
-        this.passwordStrengthText = 'Strong';
-        break;
-      default:
-        this.passwordStrengthText = '';
-    }
   }
 
   onSubmit(): void {
@@ -117,10 +64,9 @@ export class SignupComponent implements OnInit {
 
     // Simulate API call
     setTimeout(() => {
-      // call registration service stand in
       console.log('Signup form submitted:', this.signupForm.value);
       
-      // store user details in localStorage or a service
+      // Store user details (in a real app, this would be handled by a service)
       localStorage.setItem('currentUser', JSON.stringify({
         firstName: this.signupForm.value.firstName,
         lastName: this.signupForm.value.lastName,
