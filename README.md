@@ -35,7 +35,7 @@ npm install
 ng serve
 ```
 
-1. Open your browser and navigate to [local](http://localhost:4200/)
+1. Open your browser and navigate to [http://localhost:4200/](http://localhost:4200/)
 
 ## 📸Screenshots
 ### Home-page:
