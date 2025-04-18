@@ -23,19 +23,19 @@
 git clone https://github.com/popaiulian1/BurgerHouse_Angular.git
 cd BurgerHouse_Angular/burger-house
 ```
-1. Install dependencies
+2. Install dependencies
 
 ```bash
 npm install
 ```
 
-1. Start the development server
+3. Start the development server
 
 ```bash
 ng serve
 ```
 
-1. Open your browser and navigate to `http://localhost:4200/`
+4. Open your browser and navigate to `http://localhost:4200/`
 
 ## 📸Screenshots
 ### Home-page:
